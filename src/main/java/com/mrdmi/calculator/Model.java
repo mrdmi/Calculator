@@ -18,6 +18,15 @@ public class Model {
     }
 
     public void handleInput(String val) {
+        if (currentNum.equals("Number out of range") || currentNum.equals("Can't divide by zero"))
+            clear();
+
+        if (val.equals("⌫") && !operationFlag) {
+            int len = currentNum.length();
+            if (len == 1)
+                currentNum = "0";
+            else currentNum = currentNum.substring(0, len - 1);
+        }
 
         if (val.equals("C"))
             clear();
@@ -46,14 +55,21 @@ public class Model {
             tmp = currentNum;
             operationFlag = true;
         }
-        double arg1 = Double.parseDouble(register);
-        double arg2 = Double.parseDouble(tmp);
-
-        currentNum = calculator.calculate(arg1, arg2, operator).toString();
-
-        register = currentNum;
 
         isOperationDone = true;
+
+        try {
+            String res = calculator.calculate(register, tmp, operator);
+            if (res.contains("E") && Integer.parseInt(res.substring(18)) > 99) {
+                currentNum = "Number out of range";
+                register = currentNum;
+                return;
+            }
+            currentNum = res;
+            register = currentNum;
+        } catch (ArithmeticException e) {
+            currentNum = "Can't divide by zero";
+        }
     }
 
     private void writeOperator(String val) {
@@ -61,7 +77,7 @@ public class Model {
         if (register.isEmpty()) {
             register = currentNum;
             operationFlag = true;
-        } else
+        } else if (!operationFlag)
             handleOperation();
 
         operator = val;
@@ -101,6 +117,9 @@ public class Model {
             currentNum = val;
             return;
         }
+
+        if (currentNum.length() >= 20)
+            return;
 
         currentNum += val;
     }
