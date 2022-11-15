@@ -18,8 +18,16 @@ public class Model {
     }
 
     public void handleInput(String val) {
+
         if (currentNum.equals("Number out of range") || currentNum.equals("Can't divide by zero"))
             clear();
+
+        if (val.equals("+/-") && !currentNum.equals("0")) {
+            if (currentNum.charAt(0) == '-') {
+                currentNum = currentNum.replaceFirst("-", "");
+            } else
+                currentNum = "-" + currentNum;
+        }
 
         if (val.equals("⌫") && !operationFlag) {
             int len = currentNum.length();
@@ -60,7 +68,8 @@ public class Model {
 
         try {
             String res = calculator.calculate(register, tmp, operator);
-            if (res.contains("E") && Integer.parseInt(res.substring(18)) > 99) {
+            System.out.println(res);
+            if (res.contains("E") && Integer.parseInt(res.substring(res.indexOf('E') + 2)) > 99) {
                 currentNum = "Number out of range";
                 register = currentNum;
                 return;
@@ -106,7 +115,7 @@ public class Model {
         }
 
         if (val.equals(".")) {
-            if (!isFloat) {
+            if (!isFloat && currentNum.length() < 18) {
                 currentNum += val;
                 isFloat = true;
             }
@@ -118,7 +127,7 @@ public class Model {
             return;
         }
 
-        if (currentNum.length() >= 20)
+        if (currentNum.length() >= 19)
             return;
 
         currentNum += val;
