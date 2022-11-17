@@ -14,14 +14,39 @@ public class Model {
     private String register = "";
     private String operator = "";
     private String tmp = "";
+    private String memorySell = DEFAULT_CURR_VAL;
     public Model(Screen screen) {
         this.screen = screen;
     }
 
     public void handleInput(String val) {
+        if (val.equals("MS")) {
+            memorySell = currentNum;
+        }
 
-        if (currentNum.equals("Number out of range") || currentNum.equals("Can't divide by zero"))
+        if (val.equals("MR")) {
+            operationFlag = false;
+            register = currentNum;
+            currentNum = memorySell;
+            anotherOpFlag = false;
+        }
+
+        if (val.equals("M+")) {
+            memorySell = calculator.binaryOp(memorySell, currentNum, "+");
+        }
+
+        if (val.equals("M-")) {
+            memorySell = calculator.binaryOp(memorySell, currentNum, "-");
+        }
+
+        if (currentNum.equals("Number out of range") || currentNum.equals("Can't divide by zero")
+                || currentNum.equals("Invalid operation"))
             clear();
+
+        if (val.equals("√")) {
+            operator = "√";
+            handleOperation();
+        }
 
         if (val.equals("+/-") && !currentNum.equals("0")) {
             if (currentNum.charAt(0) == '-') {
@@ -53,10 +78,17 @@ public class Model {
         }
 
         screen.updateScreen(currentNum);
-        System.out.println(register);
     }
 
     private void handleOperation() {
+        if (operator.equals("√")) {
+            try {
+                currentNum = calculator.unaryOp(currentNum, operator);
+            } catch (ArithmeticException e) {
+                currentNum = "Invalid operation";
+            }
+            return;
+        }
 
         if (anotherOpFlag)
             return;
@@ -72,11 +104,10 @@ public class Model {
         isOperationDone = true;
 
         try {
-            String res = calculator.calculate(register, tmp, operator);
+            String res = calculator.binaryOp(register, tmp, operator);
             System.out.println(res);
             if (res.contains("E") && Integer.parseInt(res.substring(res.indexOf('E') + 2)) > 99) {
                 currentNum = "Number out of range";
-                register = currentNum;
                 return;
             }
             currentNum = res;
@@ -106,6 +137,7 @@ public class Model {
         operator = "";
         tmp = "";
         isOperationDone = false;
+        anotherOpFlag = false;
     }
 
     private void writeCurrentNum(String val) {
