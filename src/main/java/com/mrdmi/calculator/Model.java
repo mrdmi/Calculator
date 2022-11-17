@@ -8,6 +8,7 @@ public class Model {
     private boolean isFloat = false;
     private boolean operationFlag = false;
     private boolean isOperationDone = false;
+    private boolean anotherOpFlag = false;
     private static final String DEFAULT_CURR_VAL = "0";
     private String currentNum = DEFAULT_CURR_VAL;
     private String register = "";
@@ -29,7 +30,7 @@ public class Model {
                 currentNum = "-" + currentNum;
         }
 
-        if (val.equals("⌫") && !operationFlag) {
+        if ((val.equals("⌫")) && !operationFlag) {
             int len = currentNum.length();
             if (len == 1)
                 currentNum = "0";
@@ -56,6 +57,10 @@ public class Model {
     }
 
     private void handleOperation() {
+
+        if (anotherOpFlag)
+            return;
+
         if (register.isEmpty())
             return;
 
@@ -82,7 +87,6 @@ public class Model {
     }
 
     private void writeOperator(String val) {
-
         if (register.isEmpty()) {
             register = currentNum;
             operationFlag = true;
@@ -91,6 +95,7 @@ public class Model {
 
         operator = val;
         isOperationDone = false;
+        anotherOpFlag = true;
     }
 
     private void clear() {
@@ -104,6 +109,7 @@ public class Model {
     }
 
     private void writeCurrentNum(String val) {
+        anotherOpFlag = false;
 
         if (isOperationDone) {
             clear();
@@ -131,6 +137,7 @@ public class Model {
             return;
 
         currentNum += val;
+
     }
 
     private void resetCurrentNum() {

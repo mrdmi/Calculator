@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe404de3-3ff4-4e4b-b2e3-12505b90ee76" name="Changes" comment="first fully functional version. It remains to add a save cell and change the sign">
+    <list default="true" id="fe404de3-3ff4-4e4b-b2e3-12505b90ee76" name="Changes" comment="added the button to change the sign and fixed the floating point">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/CalculatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/CalculatorMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/CalculatorMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrdmi/calculator/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/mrdmi/calculator/calc_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/mrdmi/calculator/calc_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/mrdmi/calculator/may_calc_ui.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/mrdmi/calculator/calc_ui.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668447326928</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added the button to change the sign and fixed the floating point">
+      <created>1668470823335</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668470823335</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -124,6 +134,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="basic version" />
     <MESSAGE value="first fully functional version. It remains to add a save cell and change the sign" />
-    <option name="LAST_COMMIT_MESSAGE" value="first fully functional version. It remains to add a save cell and change the sign" />
+    <MESSAGE value="added the button to change the sign and fixed the floating point" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the button to change the sign and fixed the floating point" />
   </component>
 </project>
