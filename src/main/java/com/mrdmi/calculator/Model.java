@@ -106,7 +106,8 @@ public class Model {
         try {
             String res = calculator.binaryOp(register, tmp, operator);
             System.out.println(res);
-            if (res.contains("E") && Integer.parseInt(res.substring(res.indexOf('E') + 2)) > 99) {
+            if (res.contains("E") && (Integer.parseInt(res.substring(res.indexOf('E') + 1)) > 99 ||
+                    Integer.parseInt(res.substring(res.indexOf('E') + 1)) < -99)) {
                 currentNum = "Number out of range";
                 return;
             }
